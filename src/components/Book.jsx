@@ -17,6 +17,7 @@ function Book({ id, title, author }) {
               {author}
             </p>
             <button type="button">Remove</button>
+
           </li>
 
         </ul>
@@ -25,10 +26,10 @@ function Book({ id, title, author }) {
     </>
   );
 }
-// Book.propTypes = {
-//   id: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   author: PropTypes.string.isRequired,
-// };
+Book.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+};
 
 export default Book;
