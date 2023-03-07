@@ -17,6 +17,7 @@ function Book({ id, title, author }) {
               {author}
             </p>
             <button type="button">Remove</button>
+
           </li>
 
         </ul>
@@ -26,7 +27,7 @@ function Book({ id, title, author }) {
   );
 }
 Book.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };
