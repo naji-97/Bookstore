@@ -1,33 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Book from '../components/Book';
-import Form from '../components/Form';
+import AddBookForm from '../components/Form';
+import { removeBook } from '../redux/books/booksSlice';
 
 function Books() {
-  const [books] = useState([
-    {
-      id: 1,
-      title: 'Setup development environment',
-      author: 'Naji',
-    },
-    {
-      id: 2,
-      title: 'Develop website and add content',
-      author: 'Ali',
-    },
-    {
-      id: 3,
-      title: 'Deploy to live server',
-      author: 'Imane',
-    },
-  ]);
+  const books = useSelector((state) => state.books.books);
+  const dispatch = useDispatch();
+
+  const handleRemoveBook = (itemId) => {
+    dispatch(removeBook(itemId));
+  };
 
   return (
-    <>
-      {books.map((book) => (
-        <Book key={book.id} id={book.id} title={book.title} author={book.author} />
-      ))}
-      <Form />
-    </>
+    <div>
+      <h1>Books</h1>
+      <ul>
+        {books.map((book) => (
+          <Book
+            key={book.itemId}
+            itemId={book.itemId}
+            title={book.title}
+            author={book.author}
+            handleRemoveBook={handleRemoveBook}
+          />
+        ))}
+      </ul>
+
+      <AddBookForm />
+
+    </div>
   );
 }
 
