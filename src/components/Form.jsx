@@ -27,26 +27,31 @@ function AddBookForm() {
   };
 
   return (
-    <form action="" method="" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Book title"
-        value={title}
-        id="text"
-        name="text"
-        onChange={onTitleChanged}
-        className="title"
-      />
-      <input
-        type="text"
-        placeholder="Book author"
-        value={author}
-        onChange={onAuthorChanged}
-        id="author"
-        name="author"
-        className="author"
-      />
-      <Button type="submit" className="add-btn" value="Add book" />
+    <form action="" className="" method="" onSubmit={handleSubmit}>
+      <p className="form-title">Add New Book</p>
+      <div className="input-group">
+        <input
+          style={{ color: '#c4c4c4' }}
+          type="text"
+          placeholder="Book title"
+          value={title}
+          id="text"
+          name="text"
+          onChange={onTitleChanged}
+          className="title-input"
+        />
+        <input
+          style={{ color: '#c4c4c4' }}
+          type="text"
+          placeholder=" Author"
+          value={author}
+          onChange={onAuthorChanged}
+          id="author"
+          name="author"
+          className="author"
+        />
+        <Button type="submit" className="add-btn" value="Add book" />
+      </div>
     </form>
   );
 }

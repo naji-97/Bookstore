@@ -1,17 +1,17 @@
 import React from 'react';
-import '../style/Navbar.css';
+import '../styles/Navbar.css';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav>
+    <nav className="panel-bg">
       <div className="logo">
-        <Link to="/">My Logo</Link>
+        <Link to="/">Bookstore CMS</Link>
       </div>
       <div className="links">
         <ul>
-          <li><Link to="/">Books</Link></li>
-          <li><Link to="/categories">Categories</Link></li>
+          <li className="books"><Link to="/">Books</Link></li>
+          <li className="categories"><Link to="/categories">Categories</Link></li>
         </ul>
       </div>
     </nav>

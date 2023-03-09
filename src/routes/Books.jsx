@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Book from '../components/Book';
+import '../styles/Books.css';
 import AddBookForm from '../components/Form';
 import {
   loadAllBooks, geStatus, loadBooks,
@@ -19,17 +20,17 @@ function Books() {
 
   return (
     <div>
-      <h1>Books</h1>
-      <ul>
-        {books.map((book) => (
-          <Book
-            key={book.item_id}
-            id={book.item_id}
-            title={book.title}
-            author={book.author}
-          />
-        ))}
-      </ul>
+      {/* <ul> */}
+      {books.map((book) => (
+        <Book
+          key={book.item_id}
+          id={book.item_id}
+          title={book.title}
+          author={book.author}
+          category={book.category}
+        />
+      ))}
+      {/* </ul> */}
 
       <AddBookForm />
 
