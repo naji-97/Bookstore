@@ -1,34 +1,50 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/booksSlice';
+import { addBookAsync, addBook } from '../redux/books/booksSlice';
 import Button from './Button';
 
 function AddBookForm() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const onSubmit = (e) => {
+
+  const onTitleChanged = (e) => setTitle(e.target.value);
+  const onAuthorChanged = (e) => setAuthor(e.target.value);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const newItemID = uuidv4();
-    dispatch(addBook({ itemId: newItemID, title, author }));
+    const book = {
+      item_id: crypto.randomUUID(),
+      title,
+      author,
+      category: 'Mystery',
+    };
+    if (title !== '' && author !== '') {
+      dispatch(addBook(book));
+      dispatch(addBookAsync(book));
+    }
     setTitle('');
     setAuthor('');
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form action="" method="" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Book title"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        id="text"
+        name="text"
+        onChange={onTitleChanged}
+        className="title"
       />
       <input
         type="text"
         placeholder="Book author"
         value={author}
-        onChange={(e) => setAuthor(e.target.value)}
+        onChange={onAuthorChanged}
+        id="author"
+        name="author"
+        className="author"
       />
       <Button type="submit" className="add-btn" value="Add book" />
     </form>

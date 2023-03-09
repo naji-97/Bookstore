@@ -1,16 +1,21 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import Book from '../components/Book';
 import AddBookForm from '../components/Form';
-import { removeBook } from '../redux/books/booksSlice';
+import {
+  loadAllBooks, geStatus, loadBooks,
+} from '../redux/books/booksSlice';
 
 function Books() {
-  const books = useSelector((state) => state.books.books);
   const dispatch = useDispatch();
+  const books = useSelector(loadAllBooks);
+  const status = useSelector(geStatus);
 
-  const handleRemoveBook = (itemId) => {
-    dispatch(removeBook(itemId));
-  };
+  useEffect(() => {
+    if (status === false) {
+      dispatch(loadBooks());
+    }
+  }, [dispatch, status]);
 
   return (
     <div>
@@ -18,11 +23,10 @@ function Books() {
       <ul>
         {books.map((book) => (
           <Book
-            key={book.itemId}
-            itemId={book.itemId}
+            key={book.item_id}
+            id={book.item_id}
             title={book.title}
             author={book.author}
-            handleRemoveBook={handleRemoveBook}
           />
         ))}
       </ul>
